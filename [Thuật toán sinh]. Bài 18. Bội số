@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+#define ll long long 
+using namespace std;
+string  s ; 
+int ok  , n ;
+void ktao(){
+    s = string(n , '0') ; 
+}
+void sinh(){
+    int i = s.size()-1 ; 
+    while(i>=0 && s[i]=='8'){
+        s[i] = '0' ; 
+        i-- ; 
+    }
+    if(i==-1) ok = 0 ; 
+    else s[i] = '8' ; 
+}
+
+int main() {
+    n = 19 ; ktao() ; 
+    ok = 1 ; 
+    vector<ll> v ; 
+    while(ok){
+        v.push_back(stoll(s)) ; 
+        sinh() ; 
+    }
+    ll a[305] ; 
+    for(int i=1 ; i<=300 ; i++ ){
+        for(int j=1 ; j<v.size() ; j++ ){
+            if(v[j]%i==0) {
+                a[i] = v[j] ; break ; 
+            }
+        }
+    }
+    int t ; cin>> t ; 
+    while(t--){
+        int m ; cin >> m ; 
+        cout << a[m] << endl ; 
+    }
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
