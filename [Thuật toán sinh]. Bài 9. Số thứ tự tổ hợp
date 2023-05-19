@@ -1,0 +1,31 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int n , k , a[100] , b[100] , dem = 0 , res ; 
+
+void Try(int i ){
+    for(int j = n-k+i ; j>= a[i-1]+1 ; j-- ){
+        a[i] = j ; 
+        if(i==k){
+            bool ok = true ; 
+            dem++ ;
+            for(int i=1 ; i<=k ; i++ ){
+                if(a[i] != b[i] ) ok = false ; 
+            }
+            if(ok) res = dem ; 
+        }
+        else Try(i+1) ; 
+    }
+}
+
+int main() {
+    cin >> n >> k ; 
+    for(int i=1 ; i<=k ; i++ ) cin >> b[i]  ; 
+    Try(1) ; 
+    cout << res ; 
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
