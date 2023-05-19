@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int n  ; 
+map<string , int > mp ; 
+string s[20] , a[20]  ; 
+void in(){
+    for(int i=1 ; i<=n ; i++ ) cout << a[i] << ' ' ;  
+    cout << endl ; 
+}
+void Try(int i){
+    for(int j=1 ; j<=n ; j++ ){
+        if(mp[s[j]] == 0 ){
+            mp[s[j]] = 1 ; 
+            a[i] = s[j] ; 
+            if(i==n) in() ; 
+            else Try(i+1) ;
+            mp[s[j]] = 0 ; 
+        } 
+    }
+}
+
+int main() {
+    cin >> n; 
+    for(int i=1 ; i<=n ; i++){
+        cin >> s[i] ; 
+        mp[s[i]] = 0 ; 
+    }
+    sort(s+1 , s+n+1 ) ; 
+    Try(1) ; 
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
