@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std ;
+int n , a[100] , ok ; 
+
+void sinh(){
+	int i = n - 1 ; 
+	while(a[i] < a[i+1] && i>=1 ) i-- ; 
+	if(i==0) ok = 0 ; 
+	else{
+		int j = n ; 
+		while(a[i] < a[j] ) j-- ; 
+		swap( a[i] , a[j] ) ;
+		reverse(a+i+1 , a+n+1 ) ; 
+	}
+}
+int main(){
+	int N ; cin >> N ; 
+	set<int> se ; 
+	for(int i=1 ; i<=N ; i++ ) {
+		int tmp ; cin >> tmp ; 
+		se.insert(tmp) ; 
+	}
+	n = se.size() ; 
+	int j = n ; 
+	for(int x : se ){
+		a[j] = x ; 
+		j-- ; 
+	}
+	ok = 1 ; 
+	while(ok){
+		for(int i=1 ; i<=n ; i++ ) cout << a[i] << ' ' ; 
+		cout << endl ; 
+		sinh() ; 
+	}
+	return 0 ; 
+}
