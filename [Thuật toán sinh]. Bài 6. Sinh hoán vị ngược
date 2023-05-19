@@ -1,0 +1,30 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int n , a[100] , use[100] ; 
+void in(){
+    for(int i=1 ; i<=n ; i++ ) cout << a[i] ; 
+    cout << endl ; 
+}
+
+void Try(int i ){
+    for(int j=n ; j>=1 ; j-- ){
+        if(use[j] == 0 ){
+            use[j] = 1 ; 
+            a[i] = j ; 
+            if(i==n) in() ; 
+            else Try(i+1)  ;
+            use[j] = 0  ; 
+        }
+    }
+}
+int main() {
+    cin >> n ; 
+    Try(1) ; 
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
