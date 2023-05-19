@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+string s ; 
+int ok , n  , k ; 
+
+void ktao(){
+    for(int i=1 ; i<=k;  i++ ) s[i] = '0' ; 
+}
+void sinh(){
+    int i = k ; 
+    while(i>=1 && s[i] == '1') {
+        s[i] = '0' ; i-- ; 
+    }
+    if(i==0) ok = 0 ;
+    else s[i] = '1'  ; 
+}
+int main() {
+    cin >> n ; 
+    vector<string > v ; 
+    for(int i=1 ; i<=n/2 ; i++ ){
+        k = i ; ok = 1 ; ktao() ; 
+        while(ok){
+            string res = "" ; 
+            for(int i=1 ; i<=k ; i++ ) {
+                res += s[i] ; 
+            }
+            string tmp = res ; 
+            reverse(res.begin() , res.end() ) ; 
+            v.push_back(res + tmp ) ; 
+            sinh() ; 
+        }
+    }
+    sort(v.begin() , v.end() ) ; 
+    for(string x : v ) cout << x << endl ; 
+    return 0;
+}
