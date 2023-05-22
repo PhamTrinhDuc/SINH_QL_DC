@@ -1,0 +1,39 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int n , a[100] , used[100] ;
+bool check(){
+     for(int i=1 ; i<n ; i++ ){
+         if(a[i] == 0 ) return false ; 
+         if(abs(a[i]-a[i+1]) ==1 ) return false ; 
+     }
+    if(a[n] ==0 ) return false ; 
+    return true ; 
+}
+void Try(int i){
+    for(int j=1 ; j<=n ; j++ ){
+        if(used[j] ==0 ){
+            used[j] =1 ; 
+            a[i] = j ; 
+            if(i==n ) {
+               if(check()){
+                  for(int i=1 ; i<=n ; i++ ) cout << a[i] ; 
+                  cout << endl ; 
+               }
+            }
+            else Try( i+1 ) ; 
+            used[j] =0 ; 
+        }
+    }
+}
+
+int main() {
+    cin >> n ; 
+    Try(1) ; 
+    
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
