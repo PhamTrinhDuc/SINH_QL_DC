@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+string s , x ; 
+int n , k  ; 
+char c[100] ; 
+
+void in(){
+    for(int i=0 ; i<k ;i++ ) cout << c[i] ; 
+    cout << endl ; 
+}
+void Try(int i , int idx ){
+    for(int j=idx ; j<n ; j++ ){
+        c[i] = s[j] ; 
+        if(i==k-1) in() ; 
+        else Try(i+1 , j ) ; 
+    }
+}
+
+int main() {
+    cin >> n >> k >> x ; 
+    set<char> se ; 
+    for(char x : x ){
+        se.insert(x) ; 
+    }
+    int idx = 0 ; 
+    for(char x : se ){
+        s[idx] = x ; idx++ ;
+    }
+    Try(0 , 0 ) ; 
+    /* Enter your code here.T Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
