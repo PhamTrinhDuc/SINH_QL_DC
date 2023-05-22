@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+string s  ; 
+vector<vector<string> > v ; 
+vector<string> tmp ;
+bool check(string x){
+    int i =0 , j = x.size()-1 ;
+    while(i<=j){
+        if(x[i] != x[j] ) return false ; 
+        i++ ; j-- ; 
+    }
+    return true ;
+}
+
+void Try(int st ,  string s ){
+    if(st >= s.size()){
+        v.push_back(tmp) ;  
+    }
+    for(int end=st ; end<s.size() ; end++ ){
+        if(check( s.substr(st , end - st+1 ))){
+            tmp.push_back(s.substr(st ,end-st+1 )) ;  
+            Try(end+1 ,s ) ; 
+            tmp.pop_back() ; 
+        }
+   }
+}
+int main() {
+    cin >> s; 
+    Try(0 ,s ) ;
+    for(auto it : v ){
+        for(string x : it ) cout << x << ' ' ; 
+        cout << endl ; 
+    }
+    
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
