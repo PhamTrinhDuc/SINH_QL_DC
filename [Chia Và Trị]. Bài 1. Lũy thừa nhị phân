@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+#define ll long long 
+using namespace std ; 
+int mod = 1e9 + 7 ; 
+
+ll ltnp(ll a , ll k ){
+	if(k==0) return 1 ;
+	ll x = ltnp(a , k/2 ) ; 
+	if(k%2==0) return x*x % mod ; 
+	return ( a%mod *(x*x%mod ) ) % mod; 
+}
+
+int main(){
+	ll a , b ; cin >> a >> b ; 
+	cout << ltnp(a , b ) ;
+	return 0 ; 
+}
