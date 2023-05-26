@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+#define ll long long 
+using namespace std;
+int mod = 1e9 + 7 ; 
+struct maxtrix{
+    ll f[10][10] ; 
+};
+ll n , k ; 
+maxtrix operator * (maxtrix a , maxtrix b ){
+    maxtrix c ; 
+    for(int i=0 ; i<n ; i++ ){
+        for(int j=0 ; j<n ; j++ ){
+            c.f[i][j] = 0 ; 
+            for(int k=0 ; k<n ; k++ ){
+                c.f[i][j] += (a.f[i][k] * b.f[k][j]); 
+                c.f[i][j] %= mod ; 
+            }
+        }
+    }
+    return c ; 
+}
+
+maxtrix powmod(maxtrix a, ll n ){
+    if(n==1) return a ; 
+    maxtrix tmp = powmod(a , n/2 ) ; 
+    if(n%2==0 ) return tmp*tmp ; 
+    return a*tmp*tmp ; 
+}
+
+
+int main() {
+    cin >> n >> k ; 
+    maxtrix a ; 
+    for(int i=0 ; i<n ; i++ ){
+        for(int j=0 ; j<n ;  j++ ){
+            cin >> a.f[i][j] ; 
+        }
+    }
+    maxtrix res = powmod(a , k ) ; 
+    ll sum = 0  ; 
+    for(int i=0 ; i<n ; i++ ){
+        sum += res.f[i][n-1] ; 
+        sum %= mod ; 
+    }
+    cout << sum ; 
+    return 0;
+}
